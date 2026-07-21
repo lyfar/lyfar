@@ -21,7 +21,8 @@ method survive expert review.
   formal results with an indirect path through molecular structure, and a test
   of the research workflow.
 - [EGRS75 in Lean](https://github.com/lyfar/egrs75-lean) — a kernel-checked
-  formalization of a known theorem.
+  formalization of a known theorem,
+  [accepted into Lean Pool](https://github.com/Vilin97/lean-pool/pull/179).
 - [Genomic Variant Research](https://github.com/lyfar/genomic-variant-research) —
   a reusable, auditable variant-analysis workflow.
 
