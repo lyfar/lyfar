@@ -36,4 +36,4 @@ The generator reads current public GitHub data. Each row separates Lean builds, 
 
 I welcome mathematical review, AI workflow audits, rare-disease expertise, and partners who can support experimental validation.
 
-[Research site](https://strc.egor.lol) | [GitHub](https://github.com/lyfar) | [Email](mailto:egor.lyfar@gmail.com)
+[MISHA Foundation](https://misha.lyfar.com) | [GitHub](https://github.com/lyfar) | [Email](mailto:egor.lyfar@gmail.com)
