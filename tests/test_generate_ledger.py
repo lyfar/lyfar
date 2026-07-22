@@ -8,6 +8,7 @@ import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,6 +72,52 @@ class LedgerTests(unittest.TestCase):
             }
         )
         self.assertEqual(ledger.human_review(reviews, "lyfar"), "CHANGES")
+
+    def test_human_review_uses_each_reviewers_latest_state(self) -> None:
+        reviews = [
+            {
+                "author": "reviewer-one",
+                "author_type": "User",
+                "state": "CHANGES_REQUESTED",
+                "submitted_at": "2026-07-22T01:00:00Z",
+            },
+            {
+                "author": "reviewer-one",
+                "author_type": "User",
+                "state": "APPROVED",
+                "submitted_at": "2026-07-22T03:00:00Z",
+            },
+            {
+                "author": "reviewer-two",
+                "author_type": "User",
+                "state": "CHANGES_REQUESTED",
+                "submitted_at": "2026-07-22T02:00:00Z",
+            },
+        ]
+        self.assertEqual(ledger.human_review(reviews, "lyfar"), "CHANGES")
+
+        reviews.append(
+            {
+                "author": "reviewer-two",
+                "author_type": "User",
+                "state": "APPROVED",
+                "submitted_at": "2026-07-22T04:00:00Z",
+            }
+        )
+        self.assertEqual(ledger.human_review(reviews, "lyfar"), "APPROVED")
+
+    def test_authenticated_api_error_is_not_retried_anonymously(self) -> None:
+        error = ledger.urllib.error.HTTPError(
+            "https://api.github.com/test", 403, "forbidden", {}, None
+        )
+        client = ledger.GitHubClient("secret-token")
+        with mock.patch.object(
+            ledger.urllib.request, "urlopen", side_effect=error
+        ) as call:
+            with self.assertRaisesRegex(RuntimeError, "returned 403"):
+                client.get("/test")
+        self.assertEqual(call.call_count, 1)
+        self.assertEqual(client.token, "secret-token")
 
     def test_all_rendered_assets_are_accessible_xml(self) -> None:
         rows, observed_at = ledger.normalize(self.data)

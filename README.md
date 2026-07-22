@@ -8,7 +8,7 @@ My son Misha has a rare genetic hearing loss. After his diagnosis, I began build
 
 > One rare disease is rare. Rare diseases together are not.
 
-Formal mathematics is my test bench for the AI research workflow. I use Lean to expose assumptions and make generated proofs inspectable. Lean can check a proof term against its stated assumptions. Gene-therapy evidence requires biological experiments, clinical data, and specialist review.
+Formal mathematics is my test bench for the AI research workflow. I use Lean to expose assumptions and make generated proofs inspectable. Lean can check a proof term against its stated assumptions. Gene therapy evidence requires biological experiments, clinical data, and specialist review.
 
 ## Public proof ledger
 

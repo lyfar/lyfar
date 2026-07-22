@@ -97,9 +97,6 @@ class GitHubClient:
             with urllib.request.urlopen(request, timeout=30) as response:
                 return json.load(response)
         except urllib.error.HTTPError as error:
-            if self.token and error.code in {403, 404}:
-                self.token = None
-                return self.get(path)
             raise RuntimeError(
                 f"GitHub API returned {error.code} for {path}"
             ) from error
@@ -201,14 +198,27 @@ def human_review(reviews: list[dict[str, Any]], author: str) -> str:
     ]
     if not human:
         return "NONE"
-    latest = max(human, key=lambda item: item.get("submitted_at") or "")
+
+    latest_by_reviewer: dict[str, dict[str, Any]] = {}
+    for item in human:
+        reviewer = item["author"]
+        previous = latest_by_reviewer.get(reviewer)
+        if previous is None or (item.get("submitted_at") or "") > (
+            previous.get("submitted_at") or ""
+        ):
+            latest_by_reviewer[reviewer] = item
+
     states = {
         "APPROVED": "APPROVED",
         "CHANGES_REQUESTED": "CHANGES",
         "COMMENTED": "COMMENTED",
         "DISMISSED": "DISMISSED",
     }
-    return states.get(latest["state"], latest["state"])
+    active_states = {item["state"] for item in latest_by_reviewer.values()}
+    for state in ("CHANGES_REQUESTED", "APPROVED", "COMMENTED", "DISMISSED"):
+        if state in active_states:
+            return states[state]
+    return sorted(active_states)[0]
 
 
 def lifecycle(pull: dict[str, Any]) -> str:
