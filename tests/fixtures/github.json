@@ -1,0 +1,236 @@
+{
+  "repository": "Vilin97/lean-pool",
+  "pulls": [
+    {
+      "number": 179,
+      "title": "Add Egrs75: the Erdős-Graham-Ruzsa-Straus two-prime theorem",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-06-16T21:00:38Z",
+      "merged_by": "Vilin97",
+      "author": "lyfar",
+      "head_sha": "0026f24a46e671f8d50fcd8673d81b5ae61fe58e",
+      "updated_at": "2026-07-21T06:17:11Z",
+      "url": "https://github.com/Vilin97/lean-pool/pull/179",
+      "checks": [
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-06-12T16:59:00Z"
+        },
+        {
+          "name": "Documentation",
+          "status": "completed",
+          "conclusion": "failure",
+          "completed_at": "2026-06-12T16:59:02Z"
+        }
+      ],
+      "comments": [
+        {
+          "body": "<!-- lean-pool-llm-review -->\n**Reviewed head:** `0026f24a46e671f8d50fcd8673d81b5ae61fe58e`\n**Verdict:** ✅ `approve`",
+          "updated_at": "2026-06-13T16:03:23Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 271,
+      "title": "Add Euclidean distance geometry",
+      "state": "open",
+      "draft": true,
+      "merged_at": null,
+      "merged_by": null,
+      "author": "lyfar",
+      "head_sha": "50d8909a67b8921837434e1e9a98ee0365ad7883",
+      "updated_at": "2026-07-21T09:24:19Z",
+      "url": "https://github.com/Vilin97/lean-pool/pull/271",
+      "checks": [
+        {
+          "name": "Build pool",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-21T09:23:41Z"
+        },
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-21T09:23:46Z"
+        }
+      ],
+      "comments": [
+        {
+          "body": "<!-- lean-pool-llm-review -->\n**Reviewed head:** `50d8909a67b8921837434e1e9a98ee0365ad7883`\n**Verdict:** ✅ `approve`",
+          "updated_at": "2026-07-21T07:29:49Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 272,
+      "title": "Formalize a conditional fourteen-point case of Erdős Problem 132",
+      "state": "open",
+      "draft": false,
+      "merged_at": null,
+      "merged_by": null,
+      "author": "lyfar",
+      "head_sha": "cca8094eea37d20904d70c2dfa5ca3e0977ce63e",
+      "updated_at": "2026-07-21T12:01:24Z",
+      "url": "https://github.com/Vilin97/lean-pool/pull/272",
+      "checks": [
+        {
+          "name": "Build pool",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-21T12:00:33Z"
+        },
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-21T12:00:38Z"
+        }
+      ],
+      "comments": [
+        {
+          "body": "<!-- lean-pool-llm-review -->\n**Reviewed head:** `cca8094eea37d20904d70c2dfa5ca3e0977ce63e`\n**Verdict:** ✅ `approve`",
+          "updated_at": "2026-07-21T12:01:24Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 273,
+      "title": "Prove density-one GKP divisibility via ternary carries",
+      "state": "open",
+      "draft": false,
+      "merged_at": null,
+      "merged_by": null,
+      "author": "lyfar",
+      "head_sha": "9a363ca9ce0c9dd6813c90780b9e7f9838f9a6f2",
+      "updated_at": "2026-07-22T02:44:17Z",
+      "url": "https://github.com/Vilin97/lean-pool/pull/273",
+      "checks": [
+        {
+          "name": "Build pool",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-22T02:43:32Z"
+        },
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-22T02:43:38Z"
+        }
+      ],
+      "comments": [
+        {
+          "body": "<!-- lean-pool-llm-review -->\n**Reviewed head:** `9a363ca9ce0c9dd6813c90780b9e7f9838f9a6f2`\n**Verdict:** ✅ `approve`",
+          "updated_at": "2026-07-21T12:21:28Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 274,
+      "title": "Formalize the known Hadwiger-Nelson bounds",
+      "state": "open",
+      "draft": false,
+      "merged_at": null,
+      "merged_by": null,
+      "author": "lyfar",
+      "head_sha": "62ed303ea44aaadd6cefc145cfc6eef1bea7b1fe",
+      "updated_at": "2026-07-21T15:13:24Z",
+      "url": "https://github.com/Vilin97/lean-pool/pull/274",
+      "checks": [
+        {
+          "name": "Build pool",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-21T15:00:38Z"
+        },
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-21T15:00:44Z"
+        }
+      ],
+      "comments": [
+        {
+          "body": "<!-- lean-pool-llm-review -->\n**Reviewed head:** `62ed303ea44aaadd6cefc145cfc6eef1bea7b1fe`\n**Verdict:** ✅ `approve`",
+          "updated_at": "2026-07-21T15:01:21Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 275,
+      "title": "Formalize de Bruijn-Erdős compactness for graph coloring",
+      "state": "open",
+      "draft": false,
+      "merged_at": null,
+      "merged_by": null,
+      "author": "lyfar",
+      "head_sha": "c98627ac3eab7b2dc5125526e3ff73ab9023ea84",
+      "updated_at": "2026-07-21T17:17:56Z",
+      "url": "https://github.com/Vilin97/lean-pool/pull/275",
+      "checks": [
+        {
+          "name": "Build pool",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-21T17:17:15Z"
+        },
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-21T17:17:21Z"
+        }
+      ],
+      "comments": [
+        {
+          "body": "<!-- lean-pool-llm-review -->\n**Reviewed head:** `c98627ac3eab7b2dc5125526e3ff73ab9023ea84`\n**Verdict:** ✅ `approve`",
+          "updated_at": "2026-07-21T17:17:56Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 276,
+      "title": "Formalize exact odd-prime central-binomial valuation distributions",
+      "state": "open",
+      "draft": false,
+      "merged_at": null,
+      "merged_by": null,
+      "author": "lyfar",
+      "head_sha": "2adb5c0acd00c6dbcb9a35b0fe7d3a21371b4b7c",
+      "updated_at": "2026-07-21T17:48:36Z",
+      "url": "https://github.com/Vilin97/lean-pool/pull/276",
+      "checks": [
+        {
+          "name": "Build pool",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-21T17:47:54Z"
+        },
+        {
+          "name": "Build project",
+          "status": "completed",
+          "conclusion": "success",
+          "completed_at": "2026-07-21T17:48:01Z"
+        }
+      ],
+      "comments": [
+        {
+          "body": "<!-- lean-pool-llm-review -->\n**Reviewed head:** `2adb5c0acd00c6dbcb9a35b0fe7d3a21371b4b7c`\n**Verdict:** ✅ `approve`",
+          "updated_at": "2026-07-21T17:48:36Z"
+        }
+      ],
+      "reviews": []
+    }
+  ]
+}
