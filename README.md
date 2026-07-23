@@ -1,14 +1,14 @@
 # Egor Lyfar
 
-Independent researcher building inspectable workflows across formal mathematics and rare-disease research.
+Independent researcher. My primary target is fundamental mathematics: formal proofs in Lean, and an AI research workflow built to be inspected. The same method drives open-source work in rare-disease biology.
 
 ## The mission
 
-My son Misha has a rare genetic hearing loss. After his diagnosis, I began building an independent AI research lab for rare diseases. I publish methods and results that specialists can inspect.
+Fundamental mathematics is my primary target and my test bench for the AI research workflow. I use Lean to expose assumptions and make generated proofs inspectable. Lean checks a proof term against its stated assumptions, so a claim either type-checks or it does not.
+
+The same method carries into a science mission I run in the open: computational, source-linked work on rare genetic disease, including gene therapy. I publish the methods and results so specialists can inspect them. Gene therapy evidence requires biological experiments, clinical data, and specialist review. None of that happens in this code.
 
 > One rare disease is rare. Rare diseases together are not.
-
-Formal mathematics is my test bench for the AI research workflow. I use Lean to expose assumptions and make generated proofs inspectable. Lean can check a proof term against its stated assumptions. Gene therapy evidence requires biological experiments, clinical data, and specialist review.
 
 ## Public proof ledger
 
