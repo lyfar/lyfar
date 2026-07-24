@@ -1,14 +1,12 @@
 # Egor Lyfar
 
-Independent researcher. My primary target is fundamental mathematics: formal proofs in Lean, and an AI research workflow built to be inspected. The same method drives open-source work in rare-disease biology.
+Independent researcher. Fundamental mathematics first, applied through open-source tools for rare genetic disease.
 
 ## The mission
 
-Fundamental mathematics is my primary target and my test bench for the AI research workflow. I use Lean to expose assumptions and make generated proofs inspectable. Lean checks a proof term against its stated assumptions, so a claim either type-checks or it does not.
+I formalize proofs in Lean and use that as a test bench for an AI research workflow: Lean checks a proof term against its stated assumptions, so a claim either type-checks or it does not.
 
-The same method carries into a science mission I run in the open: computational, source-linked work on rare genetic disease, including gene therapy. I publish the methods and results so specialists can inspect them. Gene therapy evidence requires biological experiments, clinical data, and specialist review. None of that happens in this code.
-
-> One rare disease is rare. Rare diseases together are not.
+The repos below apply the same workflow to rare genetic disease: computational tools and source-linked analysis, published so specialists can inspect the methods. Biological experiments, clinical data, and specialist review still decide what holds up. None of that happens in this code.
 
 ## Public proof ledger
 
