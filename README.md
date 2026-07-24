@@ -12,16 +12,16 @@ The same method carries into a science mission I run in the open: computational,
 
 ## Public proof ledger
 
-The generator reads current public GitHub data. Each row separates Lean builds, automated Lean Pool editorial review, formal human review, claim scope, and PR state.
+The generator discovers every public pull request in `Vilin97/lean-pool` authored by `lyfar`, then reads its current GitHub evidence. Reviewed entries use explicit claim-scope classifications. A new pull request appears automatically as `SCOPE PENDING` until its claim boundary is classified. Each row keeps Lean builds, automated Lean Pool editorial review, formal human review, claim scope, and PR state separate.
 
 <picture>
   <source media="(prefers-color-scheme: dark) and (max-width: 600px)" srcset="assets/proof-ledger-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/proof-ledger-dark.svg">
   <source media="(max-width: 600px)" srcset="assets/proof-ledger-light-mobile.svg">
-  <img src="assets/proof-ledger-light.svg" width="1200" alt="Proof ledger for seven Lean Pool contributions. Each row separates claim scope, Lean build status, automated editorial review, formal human review, and pull request state. The PR 272 row carries a three-input conditional label.">
+  <img src="assets/proof-ledger-light.svg" width="1200" alt="Proof ledger for Lean Pool contributions by lyfar. Each row separates claim scope, Lean build status, automated editorial review, formal human review, and pull request state. Unclassified new pull requests are marked scope pending.">
 </picture>
 
-[EGRS75 merged PR #179](https://github.com/Vilin97/lean-pool/pull/179) | [Active Lean Pool PRs #271-#276](https://github.com/Vilin97/lean-pool/pulls?q=is%3Apr+is%3Aopen+author%3Alyfar) | [Generator and fixtures](scripts/generate_ledger.py)
+[EGRS75 merged PR #179](https://github.com/Vilin97/lean-pool/pull/179) | [Lean Pool PRs by lyfar](https://github.com/Vilin97/lean-pool/pulls?q=is%3Apr+author%3Alyfar) | [Generator and scope classifications](scripts/generate_ledger.py) | [Test fixture](tests/fixtures/github.json)
 
 ## Research in public
 

@@ -15,18 +15,25 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlencode
 
 
 UPSTREAM = "Vilin97/lean-pool"
-TRACKS = {
+AUTHOR = "lyfar"
+# Evidence-reviewed labels only. This map does not control PR discovery.
+SCOPE_OVERRIDES = {
     179: ("EGRS75 two-prime theorem", "KNOWN THEOREM", False),
+    270: ("EGRS75 dependency clarification", "DOCUMENTATION", False),
     271: ("Euclidean distance geometry", "CLASSICAL THEORY", False),
     272: ("Erdos 132, fourteen-point case", "3-INPUT CONDITIONAL", True),
     273: ("GKP divisibility via ternary carries", "PARTIAL RESULT", False),
     274: ("Hadwiger-Nelson known bounds", "KNOWN BOUNDS", False),
     275: ("de Bruijn-Erdos compactness", "KNOWN THEOREM", False),
     276: ("Odd-prime valuation distributions", "EXACT RESULT", False),
+    277: ("Moser lattice four-colorings", "KNOWN RESULTS", False),
+    278: ("Erdos 97 convex-octagon case", "KNOWN CASE", False),
 }
+DEFAULT_SCOPE = "SCOPE PENDING"
 AUTO_REVIEW_MARKER = "<!-- lean-pool-llm-review -->"
 BUILD_NAMES = {"build pool", "build project"}
 OUTPUT_NAMES = {
@@ -106,10 +113,33 @@ class GitHubClient:
             ) from error
 
 
-def fetch_live() -> dict[str, Any]:
-    client = GitHubClient(os.environ.get("GITHUB_TOKEN"))
+def discover_pull_numbers(client: GitHubClient) -> list[int]:
+    numbers = []
+    page = 1
+    while True:
+        query = urlencode(
+            {
+                "q": f"repo:{UPSTREAM} is:pr author:{AUTHOR}",
+                "sort": "created",
+                "order": "asc",
+                "per_page": 100,
+                "page": page,
+            }
+        )
+        result = client.get(f"/search/issues?{query}")
+        if result.get("incomplete_results"):
+            raise RuntimeError("GitHub returned incomplete pull-request search results")
+        items = result["items"]
+        numbers.extend(item["number"] for item in items)
+        if len(items) < 100:
+            return sorted(set(numbers))
+        page += 1
+
+
+def fetch_live(client: GitHubClient | None = None) -> dict[str, Any]:
+    client = client or GitHubClient(os.environ.get("GITHUB_TOKEN"))
     pulls = []
-    for number in TRACKS:
+    for number in discover_pull_numbers(client):
         pull = client.get(f"/repos/{UPSTREAM}/pulls/{number}")
         head_sha = pull["head"]["sha"]
         checks = client.get(
@@ -175,6 +205,8 @@ def build_status(checks: list[dict[str, Any]]) -> str:
         return "RUNNING"
     if any(item["conclusion"] not in {"success", "skipped"} for item in builds):
         return "FAIL"
+    if any(item["conclusion"] == "skipped" for item in builds):
+        return "SKIPPED"
     return "PASS"
 
 
@@ -187,7 +219,7 @@ def automated_review(comments: list[dict[str, Any]], head_sha: str) -> str:
     if not reviewed or reviewed.group(1) != head_sha:
         return "STALE"
     verdict = re.search(r"\*\*Verdict:\*\*.*?`([^`]+)`", latest["body"])
-    return verdict.group(1).upper() if verdict else "POSTED"
+    return short_label(verdict.group(1).upper(), 18) if verdict else "POSTED"
 
 
 def human_review(reviews: list[dict[str, Any]], author: str) -> str:
@@ -224,21 +256,34 @@ def human_review(reviews: list[dict[str, Any]], author: str) -> str:
 def lifecycle(pull: dict[str, Any]) -> str:
     if pull.get("merged_at"):
         return "MERGED"
+    if pull["state"] != "open":
+        return pull["state"].upper()
     if pull.get("draft"):
         return "DRAFT"
     return pull["state"].upper()
 
 
-def normalize(data: dict[str, Any]) -> tuple[list[dict[str, Any]], datetime]:
-    by_number = {item["number"]: item for item in data["pulls"]}
-    missing = sorted(set(TRACKS) - set(by_number))
-    if missing:
-        raise ValueError(f"Missing tracked pull requests: {missing}")
+def short_label(title: str, limit: int = 40) -> str:
+    label = re.sub(r"\s+", " ", title.replace("–", "-").replace("—", "-")).strip()
+    if len(label) <= limit:
+        return label
+    return label[: limit - 3].rstrip() + "..."
 
+
+def normalize(data: dict[str, Any]) -> tuple[list[dict[str, Any]], datetime]:
     rows = []
     timestamps: list[datetime] = []
-    for number, (label, scope, conditional) in TRACKS.items():
-        pull = by_number[number]
+    for pull in sorted(data["pulls"], key=lambda item: item["number"]):
+        number = pull["number"]
+        classification = SCOPE_OVERRIDES.get(number)
+        if classification:
+            label, scope, conditional = classification
+        else:
+            label, scope, conditional = (
+                short_label(pull["title"]),
+                DEFAULT_SCOPE,
+                False,
+            )
         for value in [pull.get("updated_at"), pull.get("merged_at")]:
             parsed = parse_timestamp(value)
             if parsed:
@@ -263,6 +308,7 @@ def normalize(data: dict[str, Any]) -> tuple[list[dict[str, Any]], datetime]:
                 "title": pull["title"],
                 "scope": scope,
                 "conditional": conditional,
+                "classified": classification is not None,
                 "build": build_status(pull.get("checks", [])),
                 "automated": automated_review(
                     pull.get("comments", []), pull["head_sha"]
@@ -326,7 +372,9 @@ def pill(
     )
 
 
-def svg_open(width: int, height: int, theme: str, mobile: bool) -> list[str]:
+def svg_open(
+    width: int, height: int, theme: str, mobile: bool, contribution_count: int
+) -> list[str]:
     palette = PALETTES[theme]
     layout = "mobile" if mobile else "desktop"
     return [
@@ -334,7 +382,9 @@ def svg_open(width: int, height: int, theme: str, mobile: bool) -> list[str]:
         f'viewBox="0 0 {width} {height}" role="img" '
         f'aria-labelledby="ledger-title ledger-desc" data-theme="{theme}" data-layout="{layout}">',
         '<title id="ledger-title">Public proof ledger</title>',
-        '<desc id="ledger-desc">Live status of seven Lean Pool contributions. Each row separates claim scope, Lean build checks, automated editorial review, formal human review, and pull request state.</desc>',
+        f'<desc id="ledger-desc">Live status of {contribution_count} Lean Pool '
+        "contributions. Each row separates claim scope, Lean build checks, "
+        "automated editorial review, formal human review, and pull request state.</desc>",
         f'<rect width="{width}" height="{height}" rx="12" fill="{palette.canvas}"/>',
     ]
 
@@ -375,12 +425,14 @@ def render_header(
 def render_desktop(
     rows: list[dict[str, Any]], observed_at: datetime, theme: str
 ) -> str:
-    width, height = 1200, 682
+    width = 1200
+    panel_bottom = 170 + len(rows) * 60
+    height = panel_bottom + 114
     palette = PALETTES[theme]
-    parts = svg_open(width, height, theme, False)
+    parts = svg_open(width, height, theme, False, len(rows))
     render_header(parts, palette, width, observed_at, False)
     parts.append(
-        f'<rect x="20" y="116" width="1160" height="474" rx="10" '
+        f'<rect x="20" y="116" width="1160" height="{panel_bottom - 116}" rx="10" '
         f'fill="{palette.panel}" stroke="{palette.border}"/>'
     )
     headers = [
@@ -428,7 +480,7 @@ def render_desktop(
             pill(
                 772,
                 top + 14,
-                118,
+                132,
                 row["automated"],
                 palette,
                 row["automated"] == "APPROVE",
@@ -451,8 +503,8 @@ def render_desktop(
     parts.append(
         text(
             32,
-            620,
-            "PASS means the current PR revision completed Lean Pool build checks.",
+            panel_bottom + 30,
+            "PASS means the current PR revision completed the Lean Pool build checks reported by GitHub.",
             fill=palette.muted,
             size=12,
         )
@@ -460,7 +512,7 @@ def render_desktop(
     parts.append(
         text(
             32,
-            642,
+            panel_bottom + 52,
             "AUTO REVIEW is the repository's automated editorial verdict. HUMAN REVIEW counts formal GitHub reviews.",
             fill=palette.muted,
             size=12,
@@ -469,8 +521,17 @@ def render_desktop(
     parts.append(
         text(
             32,
-            664,
+            panel_bottom + 74,
             "CONDITIONAL marks a theorem checked after assuming named published inputs. Lean does not check those inputs here.",
+            fill=palette.muted,
+            size=12,
+        )
+    )
+    parts.append(
+        text(
+            32,
+            panel_bottom + 96,
+            "SCOPE PENDING is the conservative default for a newly discovered PR until its claim boundary is classified.",
             fill=palette.muted,
             size=12,
         )
@@ -480,9 +541,11 @@ def render_desktop(
 
 
 def render_mobile(rows: list[dict[str, Any]], observed_at: datetime, theme: str) -> str:
-    width, height = 480, 1128
+    width = 480
+    rows_bottom = 102 + len(rows) * 132
+    height = rows_bottom + 124
     palette = PALETTES[theme]
-    parts = svg_open(width, height, theme, True)
+    parts = svg_open(width, height, theme, True, len(rows))
     render_header(parts, palette, width, observed_at, True)
     for index, row in enumerate(rows):
         top = 116 + index * 132
@@ -512,7 +575,7 @@ def render_mobile(rows: list[dict[str, Any]], observed_at: datetime, theme: str)
             pill(
                 290,
                 top + 42,
-                96,
+                150,
                 row["automated"],
                 palette,
                 row["automated"] == "APPROVE",
@@ -541,7 +604,7 @@ def render_mobile(rows: list[dict[str, Any]], observed_at: datetime, theme: str)
     parts.append(
         text(
             20,
-            1058,
+            rows_bottom + 32,
             "Lean build, automated review, human review, and PR state stay separate.",
             fill=palette.muted,
             size=12,
@@ -550,7 +613,7 @@ def render_mobile(rows: list[dict[str, Any]], observed_at: datetime, theme: str)
     parts.append(
         text(
             20,
-            1080,
+            rows_bottom + 54,
             "CONDITIONAL means the proof depends on named published inputs.",
             fill=palette.muted,
             size=12,
@@ -559,7 +622,16 @@ def render_mobile(rows: list[dict[str, Any]], observed_at: datetime, theme: str)
     parts.append(
         text(
             20,
-            1102,
+            rows_bottom + 76,
+            "SCOPE PENDING is the default for a newly discovered pull request.",
+            fill=palette.muted,
+            size=12,
+        )
+    )
+    parts.append(
+        text(
+            20,
+            rows_bottom + 98,
             "Source: public GitHub API and Vilin97/lean-pool.",
             fill=palette.muted,
             size=12,

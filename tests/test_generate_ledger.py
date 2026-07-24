@@ -47,6 +47,105 @@ class LedgerTests(unittest.TestCase):
         by_number = {row["number"]: row for row in rows}
         self.assertEqual(by_number[271]["automated"], "STALE")
 
+    def test_new_pull_request_gets_conservative_scope_without_tracking(self) -> None:
+        changed = copy.deepcopy(self.data)
+        new_pull = copy.deepcopy(changed["pulls"][0])
+        new_pull.update(
+            {
+                "number": 999,
+                "title": "Formalize a newly submitted result with a deliberately long title",
+                "state": "open",
+                "draft": False,
+                "merged_at": None,
+                "merged_by": None,
+                "head_sha": "f" * 40,
+                "updated_at": "2026-07-23T00:00:00Z",
+                "url": "https://github.com/Vilin97/lean-pool/pull/999",
+                "checks": [],
+                "comments": [],
+                "reviews": [],
+            }
+        )
+        changed["pulls"].append(new_pull)
+
+        rows, _ = ledger.normalize(changed)
+        by_number = {row["number"]: row for row in rows}
+
+        self.assertEqual(len(rows), len(self.data["pulls"]) + 1)
+        self.assertEqual(by_number[999]["scope"], "SCOPE PENDING")
+        self.assertFalse(by_number[999]["classified"])
+        self.assertLessEqual(len(by_number[999]["label"]), 40)
+        self.assertEqual(by_number[999]["build"], "NO RECORD")
+
+    def test_discovers_every_page_of_author_pull_requests(self) -> None:
+        client = mock.Mock()
+        client.get.side_effect = [
+            {
+                "incomplete_results": False,
+                "items": [{"number": number} for number in range(100, 200)],
+            },
+            {
+                "incomplete_results": False,
+                "items": [{"number": 200}, {"number": 201}],
+            },
+        ]
+
+        numbers = ledger.discover_pull_numbers(client)
+
+        self.assertEqual(numbers, list(range(100, 202)))
+        self.assertEqual(client.get.call_count, 2)
+        first_path = client.get.call_args_list[0].args[0]
+        second_path = client.get.call_args_list[1].args[0]
+        self.assertIn("author%3Alyfar", first_path)
+        self.assertIn("page=1", first_path)
+        self.assertIn("page=2", second_path)
+
+    def test_fetch_live_uses_discovered_pull_requests(self) -> None:
+        client = mock.Mock()
+
+        def response(path: str) -> object:
+            if path == "/repos/Vilin97/lean-pool/pulls/999":
+                return {
+                    "number": 999,
+                    "title": "New contribution",
+                    "state": "open",
+                    "draft": False,
+                    "merged_at": None,
+                    "merged_by": None,
+                    "user": {"login": "lyfar"},
+                    "head": {"sha": "f" * 40},
+                    "updated_at": "2026-07-23T00:00:00Z",
+                    "html_url": "https://github.com/Vilin97/lean-pool/pull/999",
+                }
+            if path.endswith("/check-runs?per_page=100"):
+                return {"check_runs": []}
+            return []
+
+        client.get.side_effect = response
+        with mock.patch.object(
+            ledger, "discover_pull_numbers", return_value=[999]
+        ) as discover:
+            data = ledger.fetch_live(client)
+
+        discover.assert_called_once_with(client)
+        self.assertEqual([pull["number"] for pull in data["pulls"]], [999])
+
+    def test_skipped_build_is_not_reported_as_pass(self) -> None:
+        checks = [
+            {
+                "name": "Build pool",
+                "status": "completed",
+                "conclusion": "skipped",
+            }
+        ]
+        self.assertEqual(ledger.build_status(checks), "SKIPPED")
+
+    def test_closed_draft_is_reported_as_closed(self) -> None:
+        self.assertEqual(
+            ledger.lifecycle({"merged_at": None, "draft": True, "state": "closed"}),
+            "CLOSED",
+        )
+
     def test_human_review_excludes_author_and_bots(self) -> None:
         reviews = [
             {
@@ -132,6 +231,23 @@ class LedgerTests(unittest.TestCase):
             self.assertIn("CONDITIONAL", source)
             self.assertNotIn("—", source)
             self.assertIn("data-theme", source, filename)
+
+    def test_rendering_grows_for_newly_discovered_rows(self) -> None:
+        rows, observed_at = ledger.normalize(self.data)
+        baseline = ET.fromstring(ledger.render_desktop(rows, observed_at, "light"))
+        extra = copy.deepcopy(rows[-1])
+        extra["number"] = 999
+        extra["scope"] = "SCOPE PENDING"
+        expanded = ET.fromstring(
+            ledger.render_desktop(rows + [extra], observed_at, "light")
+        )
+
+        self.assertGreater(
+            int(expanded.attrib["height"]), int(baseline.attrib["height"])
+        )
+        description = expanded.find("{http://www.w3.org/2000/svg}desc")
+        self.assertIsNotNone(description)
+        self.assertIn("8 Lean Pool contributions", description.text or "")
 
     def test_theme_text_contrast_meets_wcag_aa(self) -> None:
         def luminance(color: str) -> float:
