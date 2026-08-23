@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1304" viewBox="0 0 1200 1304" role="img" aria-labelledby="ledger-title ledger-desc" data-theme="dark" data-layout="desktop">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1364" viewBox="0 0 1200 1364" role="img" aria-labelledby="ledger-title ledger-desc" data-theme="dark" data-layout="desktop">
 <title id="ledger-title">Public proof ledger</title>
-<desc id="ledger-desc">Live status of 17 Lean Pool contributions. Each row separates claim scope, Lean build checks, automated editorial review, formal human review, and pull request state.</desc>
-<rect width="1200" height="1304" rx="12" fill="#0d1117"/>
+<desc id="ledger-desc">Live status of 18 Lean Pool contributions. Each row separates claim scope, Lean build checks, automated editorial review, formal human review, and pull request state.</desc>
+<rect width="1200" height="1364" rx="12" fill="#0d1117"/>
 <text x="32" y="34" fill="#4b8e66" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="11" font-weight="700" text-anchor="start" letter-spacing="1.5">PUBLIC FORMAL WORK</text>
 <text x="32" y="68" fill="#f0f6fc" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="28" font-weight="700" text-anchor="start">Proof ledger</text>
-<text x="32" y="94" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="400" text-anchor="start">Data through 2026-08-20 18:06 UTC</text>
+<text x="32" y="94" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="400" text-anchor="start">Data through 2026-08-22 09:09 UTC</text>
 <text x="1168" y="68" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="400" text-anchor="end">GitHub + Vilin97/lean-pool</text>
-<rect x="20" y="116" width="1160" height="1074" rx="10" fill="#161b22" stroke="#30363d"/>
+<rect x="20" y="116" width="1160" height="1134" rx="10" fill="#161b22" stroke="#30363d"/>
 <text x="34" y="148" fill="#8c959f" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="700" text-anchor="start" letter-spacing="0.9">CONTRIBUTION</text>
 <text x="430" y="148" fill="#8c959f" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="700" text-anchor="start" letter-spacing="0.9">SCOPE</text>
 <text x="630" y="148" fill="#8c959f" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="700" text-anchor="start" letter-spacing="0.9">LEAN BUILD</text>
@@ -149,8 +149,16 @@
 <rect x="772" y="1138" width="132" height="26" rx="6" fill="#326d4d" stroke="#4b8e66"/><text x="838" y="1156" fill="#ffffff" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">APPROVE</text>
 <rect x="920" y="1138" width="126" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="983" y="1156" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">NONE</text>
 <rect x="1080" y="1138" width="82" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="1121" y="1156" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">OPEN</text>
-<text x="32" y="1220" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">PASS means the current PR revision completed the Lean Pool build checks reported by GitHub.</text>
-<text x="32" y="1242" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">AUTO REVIEW is the repository&#x27;s automated editorial verdict. HUMAN REVIEW counts formal GitHub reviews.</text>
-<text x="32" y="1264" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">CONDITIONAL marks a theorem checked after assuming named published inputs. Lean does not check those inputs here.</text>
-<text x="32" y="1286" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">SCOPE PENDING is the conservative default for a newly discovered PR until its claim boundary is classified.</text>
+<line x1="34" y1="1184" x2="1166" y2="1184" stroke="#30363d"/>
+<text x="34" y="1209" fill="#4b8e66" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="13" font-weight="700" text-anchor="start">#345</text>
+<text x="82" y="1209" fill="#f0f6fc" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="15" font-weight="600" text-anchor="start">Formalize the geometric 3-chain suppo...</text>
+<rect x="430" y="1198" width="174" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="517" y="1216" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">SCOPE PENDING</text>
+<rect x="630" y="1198" width="112" height="26" rx="6" fill="#326d4d" stroke="#4b8e66"/><text x="686" y="1216" fill="#ffffff" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">PASS</text>
+<rect x="772" y="1198" width="132" height="26" rx="6" fill="#326d4d" stroke="#4b8e66"/><text x="838" y="1216" fill="#ffffff" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">APPROVE</text>
+<rect x="920" y="1198" width="126" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="983" y="1216" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">NONE</text>
+<rect x="1080" y="1198" width="82" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="1121" y="1216" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">OPEN</text>
+<text x="32" y="1280" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">PASS means the current PR revision completed the Lean Pool build checks reported by GitHub.</text>
+<text x="32" y="1302" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">AUTO REVIEW is the repository&#x27;s automated editorial verdict. HUMAN REVIEW counts formal GitHub reviews.</text>
+<text x="32" y="1324" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">CONDITIONAL marks a theorem checked after assuming named published inputs. Lean does not check those inputs here.</text>
+<text x="32" y="1346" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">SCOPE PENDING is the conservative default for a newly discovered PR until its claim boundary is classified.</text>
 </svg>
