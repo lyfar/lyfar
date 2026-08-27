@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="480" height="2602" viewBox="0 0 480 2602" role="img" aria-labelledby="ledger-title ledger-desc" data-theme="dark" data-layout="mobile">
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="2866" viewBox="0 0 480 2866" role="img" aria-labelledby="ledger-title ledger-desc" data-theme="dark" data-layout="mobile">
 <title id="ledger-title">Public proof ledger</title>
-<desc id="ledger-desc">Live status of 18 Lean Pool contributions. Each row separates claim scope, Lean build checks, automated editorial review, formal human review, and pull request state.</desc>
-<rect width="480" height="2602" rx="12" fill="#0d1117"/>
+<desc id="ledger-desc">Live status of 20 Lean Pool contributions. Each row separates claim scope, Lean build checks, automated editorial review, formal human review, and pull request state.</desc>
+<rect width="480" height="2866" rx="12" fill="#0d1117"/>
 <text x="24" y="34" fill="#4b8e66" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="11" font-weight="700" text-anchor="start" letter-spacing="1.5">PUBLIC FORMAL WORK</text>
 <text x="24" y="68" fill="#f0f6fc" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="28" font-weight="700" text-anchor="start">Proof ledger</text>
-<text x="24" y="94" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="400" text-anchor="start">Data through 2026-08-25 08:46 UTC</text>
+<text x="24" y="94" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="400" text-anchor="start">Data through 2026-08-27 11:40 UTC</text>
 <rect x="16" y="116" width="448" height="118" rx="10" fill="#161b22" stroke="#30363d"/>
 <text x="28" y="142" fill="#4b8e66" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="13" font-weight="700" text-anchor="start">#179</text>
 <text x="76" y="142" fill="#f0f6fc" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="650" text-anchor="start">EGRS75 two-prime theorem</text>
@@ -149,8 +149,24 @@
 <rect x="290" y="2402" width="150" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="365" y="2420" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">NEEDS_DISCUSSION</text>
 <rect x="28" y="2438" width="116" height="26" rx="6" fill="#326d4d" stroke="#4b8e66"/><text x="86" y="2456" fill="#ffffff" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">HUMAN APPROVED</text>
 <rect x="154" y="2438" width="88" height="26" rx="6" fill="#326d4d" stroke="#4b8e66"/><text x="198" y="2456" fill="#ffffff" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">MERGED</text>
-<text x="20" y="2510" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">Lean build, automated review, human review, and PR state stay separate.</text>
-<text x="20" y="2532" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">CONDITIONAL means the proof depends on named published inputs.</text>
-<text x="20" y="2554" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">SCOPE PENDING is the default for a newly discovered pull request.</text>
-<text x="20" y="2576" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">Source: public GitHub API and Vilin97/lean-pool.</text>
+<rect x="16" y="2492" width="448" height="118" rx="10" fill="#161b22" stroke="#30363d"/>
+<text x="28" y="2518" fill="#4b8e66" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="13" font-weight="700" text-anchor="start">#358</text>
+<text x="76" y="2518" fill="#f0f6fc" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="650" text-anchor="start">Challenge: six distances from the E2...</text>
+<rect x="28" y="2534" width="154" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="105" y="2552" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">SCOPE PENDING</text>
+<rect x="192" y="2534" width="88" height="26" rx="6" fill="#326d4d" stroke="#4b8e66"/><text x="236" y="2552" fill="#ffffff" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">PASS</text>
+<rect x="290" y="2534" width="150" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="365" y="2552" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">NEEDS_DISCUSSION</text>
+<rect x="28" y="2570" width="116" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="86" y="2588" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">HUMAN NONE</text>
+<rect x="154" y="2570" width="88" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="198" y="2588" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">OPEN</text>
+<rect x="16" y="2624" width="448" height="118" rx="10" fill="#161b22" stroke="#30363d"/>
+<text x="28" y="2650" fill="#4b8e66" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="13" font-weight="700" text-anchor="start">#359</text>
+<text x="76" y="2650" fill="#f0f6fc" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="650" text-anchor="start">Solution: six distances from the E2 d...</text>
+<rect x="28" y="2666" width="154" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="105" y="2684" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">SCOPE PENDING</text>
+<rect x="192" y="2666" width="88" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="236" y="2684" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">FAIL</text>
+<rect x="290" y="2666" width="150" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="365" y="2684" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">NO RECORD</text>
+<rect x="28" y="2702" width="116" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="86" y="2720" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">HUMAN NONE</text>
+<rect x="154" y="2702" width="88" height="26" rx="6" fill="#161b22" stroke="#30363d"/><text x="198" y="2720" fill="#a8b1bb" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="650" text-anchor="middle" letter-spacing="0.2">DRAFT</text>
+<text x="20" y="2774" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">Lean build, automated review, human review, and PR state stay separate.</text>
+<text x="20" y="2796" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">CONDITIONAL means the proof depends on named published inputs.</text>
+<text x="20" y="2818" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">SCOPE PENDING is the default for a newly discovered pull request.</text>
+<text x="20" y="2840" fill="#a8b1bb" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="400" text-anchor="start">Source: public GitHub API and Vilin97/lean-pool.</text>
 </svg>
