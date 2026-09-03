@@ -19,15 +19,16 @@ The generator discovers every public pull request in `Vilin97/lean-pool` authore
   <img src="assets/proof-ledger-light.svg" width="1200" alt="Proof ledger for Lean Pool contributions by lyfar. Each row separates claim scope, Lean build status, automated editorial review, formal human review, and pull request state. Unclassified new pull requests are marked scope pending.">
 </picture>
 
-[EGRS75 merged PR #179](https://github.com/Vilin97/lean-pool/pull/179) | [Lean Pool PRs by lyfar](https://github.com/Vilin97/lean-pool/pulls?q=is%3Apr+author%3Alyfar) | [Generator and scope classifications](scripts/generate_ledger.py) | [Test fixture](tests/fixtures/github.json)
+[Erdős 132 convex k=3 merged PR #343](https://github.com/Vilin97/lean-pool/pull/343) | [E2 repaired-case PR #359](https://github.com/Vilin97/lean-pool/pull/359) | [Lean Pool PRs by lyfar](https://github.com/Vilin97/lean-pool/pulls?q=is%3Apr+author%3Alyfar) | [Generator and scope classifications](scripts/generate_ledger.py) | [Test fixture](tests/fixtures/github.json)
 
 ## Research in public
 
 | Work | Evidence | Boundary |
 | --- | --- | --- |
 | [STRC Research](https://github.com/lyfar/strc-research) | Public computational work on STRC-related DFNB16 hearing loss | Preclinical hypotheses with no therapeutic claim |
-| [Distance Geometry in Lean](https://github.com/lyfar/distance-geometry-lean) | Source-linked Lean formalization and [draft PR #271](https://github.com/Vilin97/lean-pool/pull/271) | A test of the research workflow in mathematics |
+| [Distance Geometry in Lean](https://github.com/lyfar/distance-geometry-lean) | Source-linked Lean formalization and [merged PR #271](https://github.com/Vilin97/lean-pool/pull/271) | A test of the research workflow in mathematics |
 | [EGRS75 in Lean](https://github.com/lyfar/egrs75-lean) | Lean build record, automated review, and maintainer merge | A formalization of a known theorem |
+| [E11(5) chain certificates](https://github.com/lyfar/erdos132-wei-certificates) | Exact-arithmetic verification of the published 11-point 5-distance classification; found and repaired a defect (case E2) in a refereed proof, with a Lean solution in [PR #359](https://github.com/Vilin97/lean-pool/pull/359) | A repaired case of a published classification; not a solution of Erdős 132 |
 | [Genomic Variant Research](https://github.com/lyfar/genomic-variant-research) | Auditable variant-analysis workflow | Research support; clinicians make diagnoses |
 
 ## Work with me

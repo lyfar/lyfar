@@ -32,6 +32,16 @@ SCOPE_OVERRIDES = {
     276: ("Odd-prime valuation distributions", "EXACT RESULT", False),
     277: ("Moser lattice four-colorings", "KNOWN RESULTS", False),
     278: ("Erdos 97 convex-octagon case", "KNOWN CASE", False),
+    285: ("Moser subset-sums inequality", "KNOWN THEOREM", False),
+    286: ("Conway-Guy gap rigidity", "EXACT RESULT", False),
+    287: ("Erdos 97 convex-octagon case", "KNOWN CASE", False),
+    340: ("Erdos 132 convex k=3, route", "SUPERSEDED", False),
+    341: ("Erdos 132 k=3 challenge, v1", "CHALLENGE", False),
+    343: ("Erdos 132 convex k=3, deg six", "UNCONDITIONAL", False),
+    344: ("Erdos 132 k=3 challenge, v2", "CHALLENGE", False),
+    345: ("Planar 3-chain support theorem", "UNCONDITIONAL", False),
+    358: ("E2 six-distance challenge", "TO PROJECT", False),
+    359: ("E2 diameter-heptagon case", "REPAIRED CASE", False),
 }
 DEFAULT_SCOPE = "SCOPE PENDING"
 AUTO_REVIEW_MARKER = "<!-- lean-pool-llm-review -->"
